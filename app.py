@@ -140,7 +140,7 @@ def main():
     st.table(df.head(1))
     if submit_button and email != 'invalid':
         try:
-            data = pd.read_csv(file)
+            data = pd.read_csv(file).sample(2)
             data = check(data)
             st.success('success')
             st.dataframe(data.head())
