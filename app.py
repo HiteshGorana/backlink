@@ -12,8 +12,6 @@ from bs4 import BeautifulSoup
 
 from mail import send_email
 from utility import stqdm
-USERNAME = st.secrets["username"]
-PASSWORD = st.secrets["password"]
 STYLE = """
 <style>
 img {
@@ -187,7 +185,7 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-                out = send_email(csvstr, email, bodyText, USERNAME, PASSWORD)
+                out = send_email(csvstr, email, bodyText)
                 if out:
                     st.success('Data has been send to your Email Address')
             elif way == 'Download':
