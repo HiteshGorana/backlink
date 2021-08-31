@@ -188,7 +188,7 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-                out = send_email(csvstr + '.csv', email, bodyText)
+#                 out = send_email(csvstr + '.csv', email, bodyText)
                 towrite = io.BytesIO()
                 yag = yagmail.SMTP('info.opositive@gmail.com', 'Obbserv@123')
                 data.to_csv(towrite)
@@ -198,8 +198,8 @@ def main():
                          contents=bodyText,
                          attachments=towrite
                          )
-                if out:
-                    st.success('Data has been send to your Email Address')
+#                 if out:
+                st.success('Data has been send to your Email Address')
             elif way == 'Download':
                 st.markdown(download(data.to_csv(index=False), csvstr), unsafe_allow_html=True)
             file.close()
