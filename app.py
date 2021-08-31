@@ -165,8 +165,8 @@ def main():
             data = check(data)
             st.success('success')
             st.dataframe(data.head())
-            print(os.listdir('.'))
-            data.to_csv('tempDir/' + csvstr + '.csv', index=False)
+#             print(os.listdir('.'))
+#             data.to_csv('tempDir/' + csvstr + '.csv', index=False)
             
            
             a = len(data)
