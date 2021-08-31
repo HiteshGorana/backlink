@@ -29,10 +29,10 @@ TEXT = """
 A platform to enable brands & agencies for ensuring their investment of time & money in getting quality backlinks, high authority linkages and affiliate partnership is live. 
 
 How does it work 
-- Register your brand 
-- Upload a list of URLs to watch in csv format
-- Set frequency to ping 
-- Get regular Summary on mail 
+ - Register Your Brand
+ - Upload A List of URLs To Watch In CSV Format
+ - Set Frequency To Ping
+ - Get Regular Summary On Mail
 """
 def check_backlink(url, backlink):
     request = requests.get(url)
