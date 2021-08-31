@@ -155,12 +155,12 @@ def main():
     form = placeholder.form(key='my_form')
     name_ = form.text_input(label='Name')
     email = form.text_input(label='Email')
-    number = form.text_input(label='number')
-    brand_name = form.text_input(label='brand name')
+    number = form.text_input(label='Mobile')
+    brand_name = form.text_input(label='Brand name')
     plain = form.selectbox('Frequency to check', ('onetime', 'weekly', 'monthly'))
 #     way = form.selectbox('Output', ('Download'))
     way = 'Download'
-    tick = form.checkbox('subscribe for updates & FREE access to upcoming tools')
+    tick = form.checkbox('Subscribe for updates')
     if (not str(number).isdigit()) and (number != ''):
         st.sidebar.error('Invalid number')
     json_data = {
