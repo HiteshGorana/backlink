@@ -1,5 +1,6 @@
 import base64
 import datetime
+import io
 import os
 import re
 from time import gmtime, strftime
@@ -8,10 +9,12 @@ from urllib.parse import urlsplit
 import pandas as pd
 import requests
 import streamlit as st
+import yagmail
 from bs4 import BeautifulSoup
 
 from mail import send_email
 from utility import stqdm
+
 STYLE = """
 <style>
 img {
@@ -159,16 +162,13 @@ def main():
     st.table(df.head(1))
     if submit_button and email != 'invalid':
         try:
-            data = pd.read_csv(file).sample(2)
+            data = pd.read_csv(file)
             if data.columns[0] != 'BU' and data.columns[0] != 'AWU':
                 st.error('Wrong format csv file')
             data = check(data)
             st.success('success')
             st.dataframe(data.head())
-#             print(os.listdir('.'))
-#             data.to_csv('tempDir/' + csvstr + '.csv', index=False)
-            
-           
+            # data.to_csv(csvstr + '.csv', index=False)
             a = len(data)
             b = len(data[data['Brand URLs Present'] == 'Yes'])
             c = len(data[data['Brand URLs Present'] == 'No'])
@@ -188,7 +188,16 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-                out = send_email('tempDir/' + csvstr + '.csv', email, bodyText)
+                out = send_email(csvstr + '.csv', email, bodyText)
+                towrite = io.BytesIO()
+                yag = yagmail.SMTP('info.opositive@gmail.com', 'Obbserv@123')
+                data.to_csv(towrite)
+                towrite.seek(0)
+                yag.send(to='hitesh.obbserv@gmail.com',
+                         subject='Backlink',
+                         contents=bodyText,
+                         attachments=towrite
+                         )
                 if out:
                     st.success('Data has been send to your Email Address')
             elif way == 'Download':
