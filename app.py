@@ -1,6 +1,7 @@
 import base64
 import datetime
 import os
+import re
 from time import gmtime, strftime
 from urllib.parse import urlsplit
 
@@ -113,6 +114,14 @@ def download(text, csvstr):
     return href
 
 
+def isValid(s):
+    # 1) Begins with 0 or 91
+    # 2) Then contains 7 or 8 or 9.
+    # 3) Then contains 9 digits
+    Pattern = re.compile("(0|91)?[7-9][0-9]{9}")
+    return Pattern.match(s)
+
+
 def main():
     st.markdown(f"""<span style="color:red; font-size: 50px"><title>Keep it live<title></span>""",
                 unsafe_allow_html=True)
@@ -123,12 +132,23 @@ def main():
     email = form.text_input(label='Enter Email')
     number = form.text_input(label='Enter number')
     brand_name = form.text_input(label='brand name')
-    if '@' not in email and email != '':
-        st.error('Invalid Email')
-        email = 'invalid'
     plain = form.selectbox('Select Frequency', ('onetime', 'weekly', 'monthly'))
     way = form.selectbox('Output', ('Email', 'Download'))
     tick = form.checkbox('subscribe for updates & FREE access to upcoming tools')
+    if (not str(number).isdigit()) and (number != ''):
+        st.sidebar.error('Invalid number')
+    json_data = {
+        "name": name_,
+        "email": email,
+        "mobile number": number,
+        "brand name": brand_name,
+        "output": way,
+        "frequency": plain,
+        "subscribe": tick
+    }
+    if '@' not in email and email != '':
+        st.error('Invalid Email')
+        email = 'invalid'
     submit_button = form.form_submit_button(label='Submit')
     mydate = datetime.datetime.now()
     csvstr = datetime.datetime.strftime(mydate, '%Y-%m%d-%H-%M-%S')
@@ -140,14 +160,33 @@ def main():
     st.table(df.head(1))
     if submit_button and email != 'invalid':
         try:
-            data = pd.read_csv(file).sample(2)
+            data = pd.read_csv(file)
+            if data.columns[0] != 'BU' and data.columns[0] != 'AWU':
+                st.error('Wrong format csv file')
             data = check(data)
             st.success('success')
             st.dataframe(data.head())
             data.to_csv(csvstr, index=False)
+            a = len(data)
+            b = len(data[data['Brand URLs Present'] == 'Yes'])
+            c = len(data[data['Brand URLs Present'] == 'No'])
+            bodyText = f"""\
+                Hey {name_}, 
+                Thanks for using Keep it live! 
+                Your Backlink audit has been ready. Here are some insights of your audit.
+                
+                
+                Total URLs | Live Links | Broken Links | Link Removed
+                    {a}        |     {b}        |      {c}          |      {c}
+                
+                Please download full backlinks audit report.
+                Thank You! 
+                Keep It Live 
+                
+                Copyright © 2021 Keep It Live, All rights reserved. 
+                """
             if way == 'Email':
-                st.error('Not Implimented')
-                #out = send_email(csvstr, email)
+                out = send_email(csvstr, email, bodyText)
                 if out:
                     st.success('Data has been send to your Email Address')
             elif way == 'Download':
