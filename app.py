@@ -177,7 +177,7 @@ def main():
     st.table(df.head(1))
     if submit_button and email != 'invalid':
         try:
-            data = pd.read_csv(file).sample(5)
+            data = pd.read_csv(file)
             if data.columns[0] != 'BU' and data.columns[0] != 'AWU':
                 st.error('Wrong format csv file')
             data = check(data)
