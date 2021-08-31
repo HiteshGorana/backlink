@@ -157,10 +157,10 @@ def main():
     email = form.text_input(label='Email')
     number = form.text_input(label='Mobile')
     brand_name = form.text_input(label='Brand name')
-    plain = form.selectbox('Frequency for free ools update', ('onetime', 'weekly', 'monthly'))
+    plain = form.selectbox('Frequency', ('onetime', 'weekly', 'monthly'))
 #     way = form.selectbox('Output', ('Download'))
     way = 'Download'
-    tick = form.checkbox('Subscribe for updates')
+    tick = form.checkbox('Subscribe for for free tools update')
     if (not str(number).isdigit()) and (number != ''):
         st.sidebar.error('Invalid number')
     json_data = {
