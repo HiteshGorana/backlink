@@ -152,10 +152,6 @@ def main():
     st.markdown(STYLE, unsafe_allow_html=True)
     st.write(TEXT)
     df = pd.read_csv('sample_input.csv')
-    st.write('Input Format')
-    st.write('**BU** : Brand URL (Service/Product) page')
-    st.write('**AWU** : Authority Website URL (Published Authority Post URL)')
-    st.table(df.head(1))
     placeholder = st.sidebar.empty()
     form = placeholder.form(key='my_form')
     name_ = form.text_input(label='Name')
@@ -184,6 +180,10 @@ def main():
     mydate = datetime.datetime.now()
     csvstr = datetime.datetime.strftime(mydate, '%Y-%m%d-%H-%M-%S')
     file = st.file_uploader("", type=FILE_TYPES)
+    st.write('Input Format')
+    st.write('**BU** : Brand URL (Service/Product) page')
+    st.write('**AWU** : Authority Website URL (Published Authority Post URL)')
+    st.table(df.head(1))
     if not file:
         st.error('File not Uploaded')
     if submit_button and email != 'invalid':
