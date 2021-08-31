@@ -150,6 +150,7 @@ def main():
     # st.markdown(f"""<span style="color:red; font-size: 50px"><title>Keep it live<title></span>""",
     #             unsafe_allow_html=True)
     st.markdown(STYLE, unsafe_allow_html=True)
+    st.write(TEXT)
     placeholder = st.sidebar.empty()
     form = placeholder.form(key='my_form')
     name_ = form.text_input(label='Name')
