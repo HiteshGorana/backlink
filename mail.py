@@ -6,8 +6,8 @@ from email.mime.text import MIMEText
 
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
-USERNAME = ''
-PASSWORD = ''
+USERNAME = st.secrets["username"]
+PASSWORD = st.secrets["password"]
 
 
 def send_email(filename, RECIEVER_EMAIL, bodyText):
