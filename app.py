@@ -166,6 +166,8 @@ def main():
             st.success('success')
             st.dataframe(data.head())
             data.to_csv(csvstr, index=False)
+            
+            print(os.listdir('.'))
             a = len(data)
             b = len(data[data['Brand URLs Present'] == 'Yes'])
             c = len(data[data['Brand URLs Present'] == 'No'])
