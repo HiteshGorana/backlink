@@ -185,7 +185,7 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-                out = send_email(csvstr, email, bodyText)
+                out = send_email(data, csvstr, email, bodyText)
                 if out:
                     st.success('Data has been send to your Email Address')
             elif way == 'Download':
