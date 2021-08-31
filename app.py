@@ -30,7 +30,7 @@ A platform to enable brands & agencies for ensuring their investment of time & m
 
 How does it work 
 - Register your brand 
-- Upload a list of URLs to watch 
+- Upload a list of URLs to watch in csv format
 - Set frequency to ping 
 - Get regular Summary on mail 
 """
