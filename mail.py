@@ -6,17 +6,12 @@ from email.mime.text import MIMEText
 
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
-USERNAME = 'info.opositive@gmail.com'
-PASSWORD = 'Obbserv@123'
-# RECIEVER_EMAIL = 'to.hitesh.gorana@gmail.com'
+USERNAME = ''
+PASSWORD = ''
 
 
-def send_email(filename, RECIEVER_EMAIL):
+def send_email(filename, RECIEVER_EMAIL, bodyText):
     subject = 'Backlink tool'
-    bodyText = """\
-    Hi,
-    by Obbserv
-    """
     message = MIMEMultipart()
     message["From"] = USERNAME
     message["To"] = RECIEVER_EMAIL
