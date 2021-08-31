@@ -149,7 +149,7 @@ def main():
     number = form.text_input(label='Enter number')
     brand_name = form.text_input(label='brand name')
     plain = form.selectbox('Select Frequency', ('onetime', 'weekly', 'monthly'))
-    way = form.selectbox('Output', ('Email', 'Download'))
+    way = form.selectbox('Output', ('Download'))
     tick = form.checkbox('subscribe for updates & FREE access to upcoming tools')
     if (not str(number).isdigit()) and (number != ''):
         st.sidebar.error('Invalid number')
@@ -202,15 +202,14 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-                towrite = io.BytesIO()
-                yag = yagmail.SMTP('info.opositive@gmail.com', 'Obbserv@123')
-                data.to_csv(towrite)
-                towrite.seek(0)
-                yag.send(to=email,
-                         subject='Backlink',
-                         contents=bodyText,
-                         attachments=towrite
-                         )
+#                 towrite = io.BytesIO()
+#                 data.to_csv(towrite)
+#                 towrite.seek(0)
+#                 yag.send(to=email,
+#                          subject='Backlink',
+#                          contents=bodyText,
+#                          attachments=towrite
+#                          )
                 st.success('Data has been send to your Email Address')
             elif way == 'Download':
                 st.markdown(download(data.to_csv(index=False), csvstr), unsafe_allow_html=True)
