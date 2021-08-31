@@ -61,6 +61,20 @@ def status_code(list_):
             status_.append(None)
     return status_
 
+import yagmail
+import io
+towrite = io.BytesIO()
+# yag = yagmail.register('info.opositive@gmail.com', 'Obbserv@123')
+import pandas as pd
+yag = yagmail.SMTP('info.opositive@gmail.com', 'Obbserv@123')
+data = pd.read_csv('sample_input.csv')
+data.to_csv(towrite)
+towrite.seek(0)
+yag.send(to='hitesh.obbserv@gmail.com',
+         subject='Test',
+         contents="Test",
+         attachments=towrite
+         )
 
 def check(data):
     status = []
