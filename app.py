@@ -149,7 +149,8 @@ def main():
     number = form.text_input(label='Enter number')
     brand_name = form.text_input(label='brand name')
     plain = form.selectbox('Select Frequency', ('onetime', 'weekly', 'monthly'))
-    way = form.selectbox('Output', ('Download'))
+#     way = form.selectbox('Output', ('Download'))
+    way = 'Download'
     tick = form.checkbox('subscribe for updates & FREE access to upcoming tools')
     if (not str(number).isdigit()) and (number != ''):
         st.sidebar.error('Invalid number')
