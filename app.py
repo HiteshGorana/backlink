@@ -160,7 +160,7 @@ def main():
     plain = form.selectbox('Frequency', ('onetime', 'weekly', 'monthly'))
 #     way = form.selectbox('Output', ('Download'))
     way = 'Download'
-    tick = form.checkbox('Subscribe For Free Tools Update')
+    tick = form.checkbox('Subscribe for free tools update')
     if (not str(number).isdigit()) and (number != ''):
         st.sidebar.error('Invalid number')
     json_data = {
