@@ -166,7 +166,7 @@ def main():
             st.success('success')
             st.dataframe(data.head())
             print(os.listdir('.'))
-            data.to_csv(csvstr, index=False)
+            data.to_csv('tempDir/' + csvstr + '.csv', index=False)
             
            
             a = len(data)
@@ -188,7 +188,7 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-                out = send_email(data, csvstr, email, bodyText)
+                out = send_email('tempDir/' + csvstr + '.csv', email, bodyText)
                 if out:
                     st.success('Data has been send to your Email Address')
             elif way == 'Download':
