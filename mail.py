@@ -10,7 +10,7 @@ USERNAME = 'info.opositive@gmail.com'
 PASSWORD = 'Obbserv@123'
 
 
-def send_email(filename, RECIEVER_EMAIL, bodyText):
+def send_email(data, filename, RECIEVER_EMAIL, bodyText):
     subject = 'Backlink tool'
     message = MIMEMultipart()
     message["From"] = USERNAME
@@ -18,10 +18,10 @@ def send_email(filename, RECIEVER_EMAIL, bodyText):
     message["Subject"] = subject
 
     message.attach(MIMEText(bodyText, 'plain'))
-    attachment = open(filename, "rb")
+    attachment = data
 
     mimeBase = MIMEBase('application', 'octet-stream')
-    mimeBase.set_payload(attachment.read())
+    mimeBase.set_payload(attachment)
 
     encoders.encode_base64(mimeBase)
     mimeBase.add_header('Content-Disposition', "attachment; filename= " + filename)
