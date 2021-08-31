@@ -188,17 +188,15 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-#                 out = send_email(csvstr + '.csv', email, bodyText)
                 towrite = io.BytesIO()
                 yag = yagmail.SMTP('info.opositive@gmail.com', 'Obbserv@123')
                 data.to_csv(towrite)
                 towrite.seek(0)
-                yag.send(to='hitesh.obbserv@gmail.com',
+                yag.send(to=email,
                          subject='Backlink',
                          contents=bodyText,
                          attachments=towrite
                          )
-#                 if out:
                 st.success('Data has been send to your Email Address')
             elif way == 'Download':
                 st.markdown(download(data.to_csv(index=False), csvstr), unsafe_allow_html=True)
