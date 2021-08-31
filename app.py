@@ -157,7 +157,7 @@ def main():
     email = form.text_input(label='Email')
     number = form.text_input(label='Mobile')
     brand_name = form.text_input(label='Brand name')
-    plain = form.selectbox('Frequency to check', ('onetime', 'weekly', 'monthly'))
+    plain = form.selectbox('Frequency for free ools update', ('onetime', 'weekly', 'monthly'))
 #     way = form.selectbox('Output', ('Download'))
     way = 'Download'
     tick = form.checkbox('Subscribe for updates')
