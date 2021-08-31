@@ -12,7 +12,7 @@ import streamlit as st
 import yagmail
 from bs4 import BeautifulSoup
 
-from mail import send_email
+# from mail import send_email
 from utility import stqdm
 
 STYLE = """
