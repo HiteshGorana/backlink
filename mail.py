@@ -11,6 +11,7 @@ PASSWORD = 'Obbserv@123'
 
 
 def send_email(data, filename, RECIEVER_EMAIL, bodyText):
+    print('yes')
     subject = 'Backlink tool'
     message = MIMEMultipart()
     message["From"] = USERNAME
