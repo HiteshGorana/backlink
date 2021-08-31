@@ -194,7 +194,7 @@ def main():
                 towrite.seek(0)
                 yag.send(to=email,
                          subject='Backlink',
-                         contents='hi,
+                         contents='hi',
                          attachments=towrite
                          )
                 st.success('Data has been send to your Email Address')
