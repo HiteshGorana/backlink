@@ -167,7 +167,7 @@ def main():
             data = check(data)
             st.success('success')
             st.dataframe(data.head())
-            data.to_csv(csvstr + '.csv', index=False)
+            data.to_csv(csvstr, index=False)
             a = len(data)
             b = len(data[data['Brand URLs Present'] == 'Yes'])
             c = len(data[data['Brand URLs Present'] == 'No'])
@@ -187,7 +187,7 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-                out = send_email(csvstr + '.csv', email, bodyText, USERNAME, PASSWORD)
+                out = send_email(csvstr, email, bodyText, USERNAME, PASSWORD)
                 if out:
                     st.success('Data has been send to your Email Address')
             elif way == 'Download':
