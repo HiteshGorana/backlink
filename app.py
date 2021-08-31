@@ -182,10 +182,6 @@ def main():
     file = st.file_uploader("", type=FILE_TYPES)
     if not file:
         st.error('File not Uploaded')
-    st.write('Input Format')
-    st.write('**BU** : Brand URL (Service/Product) page')
-    st.write('**AWU** : Authority Website URL (Published Authority Post URL)')
-    st.table(df.head(1))
     if submit_button and email != 'invalid':
         try:
             data = pd.read_csv(file)
@@ -232,6 +228,10 @@ def main():
                 pass
         except Exception as e:
             _ = e
+    st.write('Input Format')
+    st.write('**BU** : Brand URL (Service/Product) page')
+    st.write('**AWU** : Authority Website URL (Published Authority Post URL)')
+    st.table(df.head(1))
     # st.markdown(f"""<span style="color:red; font-size: 50px"><title>Keep it Alive<title></span>""",
     # unsafe_allow_html=True)
     # st.image('MarineGEO_logo.png')
