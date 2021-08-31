@@ -25,7 +25,17 @@ img {
 
 FILE_TYPES = ["csv"]
 
+TEXT = """
+Keep it LIVE 
 
+A platform to enable brands & agencies for ensuring their investment of time & money in getting quality backlinks, high authority linkages and affiliate partnership is live. 
+
+How does it work 
+- Register your brand 
+- Upload a list of URLs to watch 
+- Set frequency to ping 
+- Get regular Summary on mail 
+"""
 def check_backlink(url, backlink):
     request = requests.get(url)
     if request.ok:
@@ -175,6 +185,7 @@ def main():
         st.error('File not Uploaded')
     st.write('Input Format')
     st.table(df.head(1))
+    st.write(TEXT)
     if submit_button and email != 'invalid':
         try:
             data = pd.read_csv(file, nrows=200)
