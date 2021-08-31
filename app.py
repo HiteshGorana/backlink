@@ -151,6 +151,11 @@ def main():
     #             unsafe_allow_html=True)
     st.markdown(STYLE, unsafe_allow_html=True)
     st.write(TEXT)
+    df = pd.read_csv('sample_input.csv')
+    st.write('Input Format')
+    st.write('**BU** : Brand URL (Service/Product) page')
+    st.write('**AWU** : Authority Website URL (Published Authority Post URL)')
+    st.table(df.head(1))
     placeholder = st.sidebar.empty()
     form = placeholder.form(key='my_form')
     name_ = form.text_input(label='Name')
@@ -178,7 +183,6 @@ def main():
     submit_button = form.form_submit_button(label='Submit')
     mydate = datetime.datetime.now()
     csvstr = datetime.datetime.strftime(mydate, '%Y-%m%d-%H-%M-%S')
-    df = pd.read_csv('sample_input.csv')
     file = st.file_uploader("", type=FILE_TYPES)
     if not file:
         st.error('File not Uploaded')
@@ -228,10 +232,6 @@ def main():
                 pass
         except Exception as e:
             _ = e
-    st.write('Input Format')
-    st.write('**BU** : Brand URL (Service/Product) page')
-    st.write('**AWU** : Authority Website URL (Published Authority Post URL)')
-    st.table(df.head(1))
     # st.markdown(f"""<span style="color:red; font-size: 50px"><title>Keep it Alive<title></span>""",
     # unsafe_allow_html=True)
     # st.image('MarineGEO_logo.png')
