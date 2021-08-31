@@ -123,8 +123,8 @@ def isValid(s):
 
 
 def main():
-    st.markdown(f"""<span style="color:red; font-size: 50px"><title>Keep it live<title></span>""",
-                unsafe_allow_html=True)
+    # st.markdown(f"""<span style="color:red; font-size: 50px"><title>Keep it live<title></span>""",
+    #             unsafe_allow_html=True)
     st.markdown(STYLE, unsafe_allow_html=True)
     placeholder = st.sidebar.empty()
     form = placeholder.form(key='my_form')
@@ -147,13 +147,13 @@ def main():
         "subscribe": tick
     }
     if '@' not in email and email != '':
-        st.error('Invalid Email')
+        st.sidebar.error('Invalid Email')
         email = 'invalid'
     submit_button = form.form_submit_button(label='Submit')
     mydate = datetime.datetime.now()
     csvstr = datetime.datetime.strftime(mydate, '%Y-%m%d-%H-%M-%S')
     df = pd.read_csv('sample_input.csv')
-    file = st.file_uploader("Upload file", type=FILE_TYPES)
+    file = st.file_uploader("", type=FILE_TYPES)
     if not file:
         st.error('File not Uploaded')
     st.write('Input Format')
@@ -166,7 +166,7 @@ def main():
             data = check(data)
             st.success('success')
             st.dataframe(data.head())
-            data.to_csv(csvstr, index=False)
+            data.to_csv(csvstr + '.csv', index=False)
             a = len(data)
             b = len(data[data['Brand URLs Present'] == 'Yes'])
             c = len(data[data['Brand URLs Present'] == 'No'])
@@ -186,7 +186,7 @@ def main():
                 Copyright © 2021 Keep It Live, All rights reserved. 
                 """
             if way == 'Email':
-                out = send_email(csvstr, email, bodyText)
+                out = send_email(csvstr + '.csv', email, bodyText)
                 if out:
                     st.success('Data has been send to your Email Address')
             elif way == 'Download':
@@ -203,11 +203,49 @@ def main():
     # st.image('MarineGEO_logo.png')
 
 
+LOGO_IMAGE = "Final Logo_01.png"
+
 if __name__ == "__main__":
-    st.markdown("""
-                    <style>
-                    footer {visibility: hidden;}
-                    </style>
-                    """, unsafe_allow_html=True)
+    # st.markdown("""
+    #                 <style>
+    #                 MainMenu {visibility: hidden;}
+    #                 </style>
+    #                 """, unsafe_allow_html=True)
+    hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+
+    """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     # MainMenu {visibility: hidden;}
+    st.markdown(
+        """
+        <style>
+        .container {
+            display: flex;
+        }
+        .logo-text {
+            font-weight:700 !important;
+            font-size:50px !important;
+            color: #f9a01b !important;
+            padding-top: 75px !important;
+        }
+        .logo-img {
+            float:right;
+            height:70px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        f"""
+        <div class="container">
+            <img class="logo-img" src="data:image/png;base64,{base64.b64encode(open(LOGO_IMAGE, "rb").read()).decode()}">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     main()
