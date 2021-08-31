@@ -183,10 +183,10 @@ def main():
         st.error('File not Uploaded')
     st.write('Input Format')
     st.table(df.head(1))
-    st.write(TEXT)
+#     st.write(TEXT)
     if submit_button and email != 'invalid':
         try:
-            data = pd.read_csv(file, nrows=200)
+            data = pd.read_csv(file)
             if data.columns[0] != 'BU' and data.columns[0] != 'AWU':
                 st.error('Wrong format csv file')
             data = check(data)
