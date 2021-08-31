@@ -183,8 +183,9 @@ def main():
     if not file:
         st.error('File not Uploaded')
     st.write('Input Format')
+    st.write('BU : Brand URL (Service/Product) page')
+    st.write('AWU : Authority Website URL (Published Authority Post URL)')
     st.table(df.head(1))
-#     st.write(TEXT)
     if submit_button and email != 'invalid':
         try:
             data = pd.read_csv(file)
