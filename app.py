@@ -26,8 +26,6 @@ img {
 FILE_TYPES = ["csv"]
 
 TEXT = """
-Keep it LIVE 
-
 A platform to enable brands & agencies for ensuring their investment of time & money in getting quality backlinks, high authority linkages and affiliate partnership is live. 
 
 How does it work 
